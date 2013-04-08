@@ -32,6 +32,19 @@ int main(int argc, char *argv[])
         exp = string(argv[1]);
     }
 
+    if(exp == "-h" || exp == "--help" || exp == "\?")
+    {
+        cout << "math parser" << endl;
+        cout << "Arkadiusz Gabrys" << endl;
+        cout << "Macrocourse Sem 2 Group 2" << endl;
+        cout << endl;
+        cout << "\tStart program without parameters to see" << endl;
+        cout << "\tuser prompt or type expression as a parameter" << endl;
+        cout << "\tto see the result without others program outputs." << endl;
+        cout << endl;
+        return 0;
+    }
+
     math_parser mp;
     mp.AddOperator("+", 1, (direction)0, addition);
     mp.AddOperator("-", 1, (direction)0, difference);
@@ -77,7 +90,7 @@ int main(int argc, char *argv[])
             }
             if(exp.empty())
             {
-                cout << " ! erro: wrong expresion" << endl;
+                cout << " ! error: wrong expresion" << endl;
                 if(parameter) return 1;
                 continue;
             }
