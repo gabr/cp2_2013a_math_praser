@@ -35,5 +35,5 @@ public:
     math_parser(void);
     ~math_parser(void);
     bool AddOperator(string name, int priority, direction dir, float(*func)(float, float));
-    float Parse(string exp);
+    string Parse(string exp);
 };

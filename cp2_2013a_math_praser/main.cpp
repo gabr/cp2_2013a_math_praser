@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
         exp = string(argv[1]);
     }
 
-    if(exp == "-h" || exp == "--help" || exp == "\?")
+    if(exp == "-h" || exp == "--help")
     {
         cout << "math parser" << endl;
         cout << "Arkadiusz Gabrys" << endl;
@@ -84,13 +84,19 @@ int main(int argc, char *argv[])
                      exp[i] == ')' ||
                     (exp[i] >= '0'  && exp[i] <= '9')))
                 {
-                    exp.erase(i, 1);
-                    i = -1;
+                    if(!(i > 1 && i+1 < exp.length() &&
+                        (exp[i-1] >= '0'  && exp[i-1] <= '9') &&
+                        (exp[i+1] >= '0'  && exp[i+1] <= '9') &&
+                        exp[i] == '.'))
+                    {
+                        exp.erase(i, 1);
+                        i = -1;
+                    }
                 }
             }
             if(exp.empty())
             {
-                cout << " ! error: wrong expresion" << endl;
+                cout << " ! error: wrong expression" << endl;
                 if(parameter) return 1;
                 continue;
             }

@@ -133,7 +133,7 @@ vector<string> math_parser::ConvertToONP(string exp)
    return out;
 }
 
-float math_parser::Parse(string exp)
+string math_parser::Parse(string exp)
 {
    vector <string> symbols = ConvertToONP(exp);
    vector <string> stack;
@@ -152,6 +152,8 @@ float math_parser::Parse(string exp)
          stack.pop_back();
          string b = stack[stack.size()-1];
          stack.pop_back();
+         // checking for dividing by zero
+         if((op.name == "/")&&(atof(a.c_str()) == 0)) return " ! error: dividing by zero";
          float ret = (*op.func)(atof(b.c_str()), atof(a.c_str()));
          char buf[10];
          gcvt(ret, 3,buf);
@@ -163,6 +165,6 @@ float math_parser::Parse(string exp)
    }
    string ret = "";
    ret = stack[0];
-   return atof(ret.c_str());
+   return ret;
 }
 
